@@ -1,14 +1,19 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PricingSection from "@/components/PricingSection";
+import QuizModal from "@/components/QuizModal";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Zap, Database, Sparkles, Target, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle, Zap, Database, Sparkles, Target, Shield, Vote } from "lucide-react";
 
 export default function Home() {
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
+
   return (
     <main className="flex min-h-screen flex-col items-center bg-background">
       {/* Navigation */}
@@ -21,6 +26,14 @@ export default function Home() {
           <span className="font-bold text-xl gradient-text">DialerGPT</span>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            onClick={() => setIsQuizOpen(true)}
+            className="hidden sm:flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300"
+          >
+            <Vote className="h-4 w-4" />
+            Help Us Build
+          </Button>
           <LanguageSwitcher />
           <ThemeSwitcher />
           <Button variant="ghost" className="hidden md:flex">
@@ -164,6 +177,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Quiz Modal */}
+      <QuizModal isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
 
       {/* Footer */}
       <footer className="w-full py-16 px-6 md:px-12 lg:px-24 border-t bg-gradient-to-br from-slate-50 to-gray-50 dark:from-slate-950 dark:to-gray-950">
