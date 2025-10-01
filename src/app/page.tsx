@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PricingSection from "@/components/PricingSection";
@@ -13,6 +13,15 @@ import { ArrowRight, CheckCircle, Zap, Database, Sparkles, Target, Shield, Vote 
 
 export default function Home() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+
+  useEffect(() => {
+    // Auto-open quiz on page load after a short delay
+    const timer = setTimeout(() => {
+      setIsQuizOpen(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-background">

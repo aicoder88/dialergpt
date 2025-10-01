@@ -68,9 +68,28 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log("Quiz submitted:", { answers, email });
+  const handleSubmit = async () => {
+    // Send form data to email endpoint
+    try {
+      const response = await fetch('/api/submit-quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          answers,
+          email,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Quiz submitted successfully");
+      }
+    } catch (error) {
+      console.error("Error submitting quiz:", error);
+    }
+
     onClose();
     // Reset state
     setStep(1);
@@ -115,18 +134,25 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
         <CardContent className="p-8 md:p-12">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center rounded-full border border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-purple-950/50 px-4 py-2 text-sm font-medium text-purple-700 dark:text-purple-300 mb-4">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Community-Driven Development
+            <div className="inline-flex items-center rounded-full border-2 border-orange-400 bg-orange-100 dark:border-orange-600 dark:bg-orange-950/70 px-5 py-2.5 text-sm font-bold text-orange-700 dark:text-orange-300 mb-4 animate-pulse">
+              <Sparkles className="mr-2 h-5 w-5" />
+              🚨 THIS SITE ISN'T REAL YET - WE NEED YOUR INPUT!
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="gradient-text">
                 We're Building the Sales Tool YOU Actually Want. Help Us Build It.
               </span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tired of sales tools that suck? We're letting YOU decide what we build next.
-              Vote for the tool you'd actually pay for—and get early access when we launch.
+            <div className="bg-yellow-50 dark:bg-yellow-950/30 border-2 border-yellow-400 dark:border-yellow-600 rounded-lg p-4 mb-4">
+              <p className="text-lg font-semibold text-yellow-900 dark:text-yellow-200 mb-2">
+                ⚠️ HOLD UP: This landing page is a MOCKUP
+              </p>
+              <p className="text-base text-yellow-800 dark:text-yellow-300">
+                We haven't built anything yet. <strong>YOU decide what we build.</strong> This is your chance to shape the product from day one. Vote below and we'll build whatever gets the most votes.
+              </p>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
+              Tired of sales tools that suck? <strong className="text-purple-600 dark:text-purple-400">We're letting YOU decide what we build next.</strong> Vote for the tool you'd actually pay for—and get early access when we launch.
             </p>
           </div>
 
@@ -454,13 +480,20 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Footer Message */}
-          <div className="mt-8 text-center space-y-3 text-sm text-muted-foreground">
-            <p className="font-medium">
-              We're not another faceless SaaS company. We're building this WITH sales reps, not for them.
+          <div className="mt-8 text-center space-y-3">
+            <div className="bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+              <p className="font-bold text-purple-900 dark:text-purple-200 text-base mb-2">
+                💡 We're not another faceless SaaS company.
+              </p>
+              <p className="text-sm text-purple-800 dark:text-purple-300">
+                We're building this WITH sales reps, not for them. Your vote = our roadmap. Top-voted tool gets built first.
+              </p>
+            </div>
+            <p className="text-purple-600 dark:text-purple-400 font-bold text-base">
+              🏆 We're building the #1 community-voted sales tool of 2025
             </p>
-            <p>Your vote = our roadmap. Top-voted tool gets built first.</p>
-            <p className="text-purple-600 dark:text-purple-400 font-semibold">
-              We're building the #1 community-voted sales tool of 2025
+            <p className="text-xs text-muted-foreground">
+              We'll email results next week so you can see what the community wants.
             </p>
           </div>
         </CardContent>
