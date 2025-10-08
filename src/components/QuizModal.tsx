@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
-import { X, Sparkles, TrendingUp, Users } from "lucide-react";
+import { X, Sparkles, TrendingUp, Users, CheckCircle } from "lucide-react";
 
 interface QuizModalProps {
   isOpen: boolean;
@@ -30,6 +30,9 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
   });
 
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [submissionComplete, setSubmissionComplete] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -58,9 +61,39 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setStep(1);
+      setAnswers({
+        painPoint: "",
+        painPointOther: "",
+        tool: "",
+        toolOther: "",
+        budget: "",
+        urgency: "",
+      });
+      setEmail("");
+      setIsSubmitting(false);
+      setSubmissionError(null);
+      setSubmissionComplete(false);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
+  const TOTAL_QUESTIONS = 4;
+  const progressStep = Math.min(step, TOTAL_QUESTIONS);
+  const progressPercent = Math.round((progressStep / TOTAL_QUESTIONS) * 100);
+  const progressLabel =
+    step <= TOTAL_QUESTIONS
+      ? `Question ${step} of ${TOTAL_QUESTIONS}`
+      : step === TOTAL_QUESTIONS + 1
+      ? "Stay in the loop"
+      : "All set!";
+  const emailPreview = email.trim();
+
   const handleNext = () => {
+    setSubmissionError(null);
     if (step < 4) {
       setStep(step + 1);
     } else {
@@ -68,35 +101,81 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log("Quiz submitted:", { answers, email });
-    onClose();
-    // Reset state
-    setStep(1);
-    setAnswers({
-      painPoint: "",
-      painPointOther: "",
-      tool: "",
-      toolOther: "",
-      budget: "",
-      urgency: "",
-    });
-    setEmail("");
+  const handleSubmit = async () => {
+    if (!isStepValid() || isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmissionError(null);
+
+    const payload = {
+      answers: {
+        ...answers,
+        painPointOther:
+          answers.painPoint === "other"
+            ? answers.painPointOther?.trim() ?? ""
+            : undefined,
+        toolOther:
+          answers.tool === "other"
+            ? answers.toolOther?.trim() ?? ""
+            : undefined,
+      },
+      email: email.trim(),
+    };
+
+    try {
+      const response = await fetch("/api/quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => null);
+        const message =
+          (errorBody && typeof errorBody.error === "string"
+            ? errorBody.error
+            : null) ?? "We couldn't save your vote. Please try again.";
+        throw new Error(message);
+      }
+
+      setSubmissionComplete(true);
+      setStep(6);
+    } catch (error) {
+      console.error("Failed to submit quiz", error);
+      setSubmissionError(
+        error instanceof Error
+          ? error.message
+          : "We couldn't save your vote. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isStepValid = () => {
     switch (step) {
       case 1:
-        return answers.painPoint !== "";
+        return (
+          answers.painPoint !== "" &&
+          (answers.painPoint !== "other" ||
+            (answers.painPointOther?.trim()?.length ?? 0) > 0)
+        );
       case 2:
-        return answers.tool !== "";
+        return (
+          answers.tool !== "" &&
+          (answers.tool !== "other" ||
+            (answers.toolOther?.trim()?.length ?? 0) > 0)
+        );
       case 3:
         return answers.budget !== "";
       case 4:
         return answers.urgency !== "";
       case 5:
-        return email !== "";
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+      case 6:
+        return true;
       default:
         return false;
     }
@@ -149,17 +228,15 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
           {/* Progress Indicator */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium">
-                Question {step} of 4
-              </span>
+              <span className="text-sm font-medium">{progressLabel}</span>
               <span className="text-sm text-muted-foreground">
-                {Math.round((step / 4) * 100)}% Complete
+                {progressPercent}% Complete
               </span>
             </div>
             <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-purple-600 to-blue-600 transition-all duration-300"
-                style={{ width: `${(step / 4) * 100}%` }}
+                style={{ width: `${progressPercent}%` }}
               ></div>
             </div>
           </div>
@@ -415,9 +492,30 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                   type="email"
                   placeholder="Enter your email..."
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (submissionError) {
+                      setSubmissionError(null);
+                    }
+                  }}
                   className="text-lg p-6"
                 />
+              </div>
+            </div>
+          )}
+
+          {step === 6 && submissionComplete && (
+            <div className="space-y-6 text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg">
+                <CheckCircle className="h-10 w-10" />
+              </div>
+              <h3 className="text-2xl font-bold">You're on the list!</h3>
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+                Thanks for voting. We'll keep you posted on the winner and send early access details to {emailPreview || "your inbox"}.
+              </p>
+              <div className="space-y-3 text-sm text-muted-foreground max-w-xl mx-auto">
+                <p>Your feedback directly shapes our roadmap.</p>
+                <p>We send only launch updates and priority invites.</p>
               </div>
             </div>
           )}
@@ -427,7 +525,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             {step > 1 && step <= 4 && (
               <Button
                 variant="outline"
-                onClick={() => setStep(step - 1)}
+                onClick={() => {
+                  setSubmissionError(null);
+                  setStep(step - 1);
+                }}
                 className="flex-1"
               >
                 Back
@@ -436,7 +537,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             {step <= 4 && (
               <Button
                 onClick={handleNext}
-                disabled={!isStepValid()}
+                disabled={!isStepValid() || isSubmitting}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
               >
                 {step === 4 ? "Continue" : "Next Question"}
@@ -445,13 +546,27 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             {step === 5 && (
               <Button
                 onClick={handleSubmit}
-                disabled={!isStepValid()}
+                disabled={!isStepValid() || isSubmitting}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
               >
-                Get Early Access
+                {isSubmitting ? "Submitting..." : "Get Early Access"}
+              </Button>
+            )}
+            {step === 6 && submissionComplete && (
+              <Button
+                onClick={onClose}
+                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+              >
+                Close
               </Button>
             )}
           </div>
+
+          {submissionError && (
+            <p className="mt-4 text-center text-sm text-red-600 dark:text-red-400">
+              {submissionError}
+            </p>
+          )}
 
           {/* Footer Message */}
           <div className="mt-8 text-center space-y-3 text-sm text-muted-foreground">
