@@ -266,28 +266,16 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
               <div className="space-y-3">
                 {[
                   {
-                    title: "AI Call-to-CRM Sync",
-                    desc: "Upload call recordings, auto-populate Salesforce/HubSpot (saves 5+ hrs/week)",
+                    title: "AI Reactivation Caller",
+                    desc: "Dials your old/ignored leads, re-engages them, and books fresh conversations automatically",
                   },
                   {
-                    title: "Instant Lead Router",
-                    desc: "Assigns inbound leads to reps in <30 seconds based on availability/territory",
+                    title: "AI Lead Qualifier + Booker",
+                    desc: "Instantly calls every new lead, qualifies them, and locks meetings on your calendar",
                   },
                   {
-                    title: "Smart Parallel Dialer",
-                    desc: "Dial 5-10 numbers at once, connect to first answer (5X more conversations)",
-                  },
-                  {
-                    title: "AI Quote Builder",
-                    desc: "Generate custom proposals in 2 minutes (Solar/HVAC/Roofing specific)",
-                  },
-                  {
-                    title: "Competitor Intel Dashboard",
-                    desc: "Real-time battle cards so you never get blindsided",
-                  },
-                  {
-                    title: "TCPA Compliance Monitor",
-                    desc: "Auto-flag risky calls before you dial (avoid $1,500/call fines)",
+                    title: "AI Website Concierge",
+                    desc: "Turns your site into a talking rep that answers questions and books calls 24/7",
                   },
                 ].map((option) => (
                   <label
