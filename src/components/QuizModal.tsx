@@ -21,11 +21,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
   ]);
 
   const [answers, setAnswers] = useState({
-    painPoint: "",
-    painPointOther: "",
     tool: "",
     toolOther: "",
-    budget: "",
+    motivation: "",
+    motivationOther: "",
     urgency: "",
   });
 
@@ -65,11 +64,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     if (!isOpen) {
       setStep(1);
       setAnswers({
-        painPoint: "",
-        painPointOther: "",
         tool: "",
         toolOther: "",
-        budget: "",
+        motivation: "",
+        motivationOther: "",
         urgency: "",
       });
       setEmail("");
@@ -81,23 +79,25 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const TOTAL_QUESTIONS = 4;
+  const TOTAL_QUESTIONS = 3;
+  const emailStep = TOTAL_QUESTIONS + 1;
+  const successStep = TOTAL_QUESTIONS + 2;
   const progressStep = Math.min(step, TOTAL_QUESTIONS);
   const progressPercent = Math.round((progressStep / TOTAL_QUESTIONS) * 100);
   const progressLabel =
     step <= TOTAL_QUESTIONS
       ? `Question ${step} of ${TOTAL_QUESTIONS}`
-      : step === TOTAL_QUESTIONS + 1
+      : step === emailStep
       ? "Stay in the loop"
       : "All set!";
   const emailPreview = email.trim();
 
   const handleNext = () => {
     setSubmissionError(null);
-    if (step < 4) {
+    if (step < TOTAL_QUESTIONS) {
       setStep(step + 1);
     } else {
-      setStep(5); // Email capture step
+      setStep(emailStep); // Email capture step
     }
   };
 
@@ -112,13 +112,13 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     const payload = {
       answers: {
         ...answers,
-        painPointOther:
-          answers.painPoint === "other"
-            ? answers.painPointOther?.trim() ?? ""
-            : undefined,
         toolOther:
           answers.tool === "other"
             ? answers.toolOther?.trim() ?? ""
+            : undefined,
+        motivationOther:
+          answers.motivation === "other"
+            ? answers.motivationOther?.trim() ?? ""
             : undefined,
       },
       email: email.trim(),
@@ -141,7 +141,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
       }
 
       setSubmissionComplete(true);
-      setStep(6);
+      setStep(successStep);
     } catch (error) {
       console.error("Failed to submit quiz", error);
       setSubmissionError(
@@ -158,23 +158,21 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     switch (step) {
       case 1:
         return (
-          answers.painPoint !== "" &&
-          (answers.painPoint !== "other" ||
-            (answers.painPointOther?.trim()?.length ?? 0) > 0)
-        );
-      case 2:
-        return (
           answers.tool !== "" &&
           (answers.tool !== "other" ||
             (answers.toolOther?.trim()?.length ?? 0) > 0)
         );
+      case 2:
+        return (
+          answers.motivation !== "" &&
+          (answers.motivation !== "other" ||
+            (answers.motivationOther?.trim()?.length ?? 0) > 0)
+        );
       case 3:
-        return answers.budget !== "";
-      case 4:
         return answers.urgency !== "";
-      case 5:
+      case emailStep:
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-      case 6:
+      case successStep:
         return true;
       default:
         return false;
@@ -214,6 +212,14 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               Tired of sales tools that suck? <strong className="text-purple-600 dark:text-purple-400">We're letting YOU decide what we build next.</strong> Vote for the tool you'd actually pay for—and get early access when we launch.
             </p>
+            <div className="mt-6 bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 text-left">
+              <p className="text-base font-semibold text-purple-900 dark:text-purple-200">
+                Answer 3 quick questions → we build the winner → you get founding-member pricing + first access.
+              </p>
+              <p className="text-sm text-purple-800 dark:text-purple-300 mt-1">
+                Help us decide what to ship and we'll keep you in the loop as prototypes turn into real product.
+              </p>
+            </div>
           </div>
 
           {/* Social Proof Bar */}
@@ -248,75 +254,15 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Question 1: Pain Point */}
+          {/* Question 1: Build Priority */}
           {step === 1 && (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-6">
-                What's your biggest pain point in sales right now?
+              <h3 className="text-2xl font-bold mb-2">
+                What should we build first?
               </h3>
-              <div className="space-y-3">
-                {[
-                  "Wasting time on manual CRM data entry after calls",
-                  "Slow lead response time (leads go cold before we call)",
-                  "Not knowing what competitors are offering",
-                  "Creating custom quotes/proposals takes forever",
-                  "Making enough dials per day (need more conversations)",
-                  "TCPA compliance anxiety (scared of getting sued)",
-                ].map((option) => (
-                  <label
-                    key={option}
-                    className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                      answers.painPoint === option
-                        ? "border-purple-600 bg-purple-50 dark:bg-purple-950/30"
-                        : "border-gray-200 dark:border-gray-700 hover:border-purple-300"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="painPoint"
-                      value={option}
-                      checked={answers.painPoint === option}
-                      onChange={(e) =>
-                        setAnswers({ ...answers, painPoint: e.target.value })
-                      }
-                      className="mt-1 mr-3"
-                    />
-                    <span className="flex-1">{option}</span>
-                  </label>
-                ))}
-                <div className="flex items-start p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700">
-                  <input
-                    type="radio"
-                    name="painPoint"
-                    value="other"
-                    checked={answers.painPoint === "other"}
-                    onChange={(e) =>
-                      setAnswers({ ...answers, painPoint: e.target.value })
-                    }
-                    className="mt-1 mr-3"
-                  />
-                  <div className="flex-1">
-                    <span className="block mb-2">Other:</span>
-                    <Input
-                      placeholder="Describe your pain point..."
-                      value={answers.painPointOther}
-                      onChange={(e) =>
-                        setAnswers({ ...answers, painPointOther: e.target.value })
-                      }
-                      disabled={answers.painPoint !== "other"}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Question 2: Tool Selection */}
-          {step === 2 && (
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-6">
-                Which tool would you pay for RIGHT NOW?
-              </h3>
+              <p className="text-base text-muted-foreground mb-4">
+                Pick the product you'd put in front of your team tomorrow. The top vote gets built first and voters get the earliest invite.
+              </p>
               <div className="space-y-3">
                 {[
                   {
@@ -395,52 +341,84 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {/* Question 3: Budget */}
-          {step === 3 && (
+          {/* Question 2: Motivation */}
+          {step === 2 && (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-6">
-                What would you pay per month for this tool?
+              <h3 className="text-2xl font-bold mb-2">
+                Why does your team need this built?
               </h3>
+              <p className="text-base text-muted-foreground mb-4">
+                Help us understand the motivation so we can DM you when we're tackling your exact use case.
+              </p>
               <div className="space-y-3">
                 {[
-                  "$0-49/month",
-                  "$50-99/month",
-                  "$100-199/month",
-                  "$200-499/month",
-                  "$500+/month",
-                  "I'd need to see it first",
+                  "We lose hours every week doing grunt CRM work",
+                  "Leads sit for too long before a rep calls back",
+                  "Competitors keep beating us on deals",
+                  "Custom quotes/proposals slow every deal",
+                  "We need more live conversations every day",
+                  "I worry about compliance/legal blowback",
                 ].map((option) => (
                   <label
                     key={option}
-                    className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                      answers.budget === option
+                    className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                      answers.motivation === option
                         ? "border-purple-600 bg-purple-50 dark:bg-purple-950/30"
                         : "border-gray-200 dark:border-gray-700 hover:border-purple-300"
                     }`}
                   >
                     <input
                       type="radio"
-                      name="budget"
+                      name="motivation"
                       value={option}
-                      checked={answers.budget === option}
+                      checked={answers.motivation === option}
                       onChange={(e) =>
-                        setAnswers({ ...answers, budget: e.target.value })
+                        setAnswers({ ...answers, motivation: e.target.value })
                       }
-                      className="mr-3"
+                      className="mt-1 mr-3"
                     />
                     <span className="flex-1 font-medium">{option}</span>
                   </label>
                 ))}
+                <div className="flex items-start p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+                  <input
+                    type="radio"
+                    name="motivation"
+                    value="other"
+                    checked={answers.motivation === "other"}
+                    onChange={(e) =>
+                      setAnswers({ ...answers, motivation: e.target.value })
+                    }
+                    className="mt-1 mr-3"
+                  />
+                  <div className="flex-1">
+                    <span className="block mb-2">Something else:</span>
+                    <Input
+                      placeholder="Tell us what this unlocks for you..."
+                      value={answers.motivationOther}
+                      onChange={(e) =>
+                        setAnswers({
+                          ...answers,
+                          motivationOther: e.target.value,
+                        })
+                      }
+                      disabled={answers.motivation !== "other"}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Question 4: Urgency */}
-          {step === 4 && (
+          {/* Question 3: Urgency */}
+          {step === 3 && (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold mb-6">
-                How soon do you need this?
+              <h3 className="text-2xl font-bold mb-2">
+                How fast do you need this live?
               </h3>
+              <p className="text-base text-muted-foreground mb-4">
+                Your timeline helps us prioritize beta invites and onboarding slots.
+              </p>
               <div className="space-y-3">
                 {[
                   "ASAP - I'm losing deals without it",
@@ -474,7 +452,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
           )}
 
           {/* Email Capture */}
-          {step === 5 && (
+          {step === emailStep && (
             <div className="space-y-6 text-center">
               <h3 className="text-2xl font-bold">Thanks! One Last Thing...</h3>
               <p className="text-lg text-muted-foreground">
@@ -511,7 +489,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {step === 6 && submissionComplete && (
+          {step === successStep && submissionComplete && (
             <div className="space-y-6 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg">
                 <CheckCircle className="h-10 w-10" />
@@ -529,7 +507,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
 
           {/* Navigation Buttons */}
           <div className="mt-8 flex gap-4">
-            {step > 1 && step <= 4 && (
+            {step > 1 && step <= TOTAL_QUESTIONS && (
               <Button
                 variant="outline"
                 onClick={() => {
@@ -541,16 +519,16 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 Back
               </Button>
             )}
-            {step <= 4 && (
+            {step <= TOTAL_QUESTIONS && (
               <Button
                 onClick={handleNext}
                 disabled={!isStepValid() || isSubmitting}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
               >
-                {step === 4 ? "Continue" : "Next Question"}
+                {step === TOTAL_QUESTIONS ? "Continue" : "Next Question"}
               </Button>
             )}
-            {step === 5 && (
+            {step === emailStep && (
               <Button
                 onClick={handleSubmit}
                 disabled={!isStepValid() || isSubmitting}
@@ -559,7 +537,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 {isSubmitting ? "Submitting..." : "Get Early Access"}
               </Button>
             )}
-            {step === 6 && submissionComplete && (
+            {step === successStep && submissionComplete && (
               <Button
                 onClick={onClose}
                 className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"

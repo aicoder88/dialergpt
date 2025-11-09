@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 
 type QuizAnswers = {
-  painPoint: string;
-  painPointOther?: string;
   tool: string;
   toolOther?: string;
-  budget: string;
+  motivation: string;
+  motivationOther?: string;
   urgency: string;
 };
 
@@ -15,9 +14,8 @@ type QuizSubmission = {
 };
 
 const REQUIRED_FIELDS: Array<keyof QuizAnswers> = [
-  "painPoint",
   "tool",
-  "budget",
+  "motivation",
   "urgency",
 ];
 
@@ -46,15 +44,14 @@ function validatePayload(payload: unknown): QuizSubmission | null {
   const rawAnswers = answers as Record<string, unknown>;
 
   const normalizedAnswers: QuizAnswers = {
-    painPoint: String(rawAnswers["painPoint"] ?? ""),
-    painPointOther: isNonEmptyString(rawAnswers["painPointOther"])
-      ? String(rawAnswers["painPointOther"]).trim()
-      : undefined,
     tool: String(rawAnswers["tool"] ?? ""),
     toolOther: isNonEmptyString(rawAnswers["toolOther"])
       ? String(rawAnswers["toolOther"]).trim()
       : undefined,
-    budget: String(rawAnswers["budget"] ?? ""),
+    motivation: String(rawAnswers["motivation"] ?? ""),
+    motivationOther: isNonEmptyString(rawAnswers["motivationOther"])
+      ? String(rawAnswers["motivationOther"]).trim()
+      : undefined,
     urgency: String(rawAnswers["urgency"] ?? ""),
   };
 
@@ -67,15 +64,15 @@ function validatePayload(payload: unknown): QuizSubmission | null {
   }
 
   if (
-    normalizedAnswers.painPoint === "other" &&
-    !isNonEmptyString(normalizedAnswers.painPointOther)
+    normalizedAnswers.tool === "other" &&
+    !isNonEmptyString(normalizedAnswers.toolOther)
   ) {
     return null;
   }
 
   if (
-    normalizedAnswers.tool === "other" &&
-    !isNonEmptyString(normalizedAnswers.toolOther)
+    normalizedAnswers.motivation === "other" &&
+    !isNonEmptyString(normalizedAnswers.motivationOther)
   ) {
     return null;
   }
@@ -121,24 +118,19 @@ async function sendEmailNotification(submission: QuizSubmission) {
       <p><strong>📧 Respondent Email:</strong> <a href="mailto:${submission.email}">${submission.email}</a></p>
 
       <div class="section">
-        <div class="label">❓ QUESTION 1: What's your biggest pain point in sales right now?</div>
-        <div class="answer">${submission.answers.painPoint}</div>
-        ${submission.answers.painPoint === 'other' && submission.answers.painPointOther ? `<div class="answer"><em>Details: ${submission.answers.painPointOther}</em></div>` : ''}
-      </div>
-
-      <div class="section">
-        <div class="label">🛠️ QUESTION 2: Which tool would you pay for RIGHT NOW?</div>
+        <div class="label">🛠️ QUESTION 1: What should we build first?</div>
         <div class="answer">${submission.answers.tool}</div>
         ${submission.answers.tool === 'other' && submission.answers.toolOther ? `<div class="answer"><em>Details: ${submission.answers.toolOther}</em></div>` : ''}
       </div>
 
       <div class="section">
-        <div class="label">💰 QUESTION 3: What would you pay per month for this tool?</div>
-        <div class="answer">${submission.answers.budget}</div>
+        <div class="label">💬 QUESTION 2: Why does your team need this built?</div>
+        <div class="answer">${submission.answers.motivation}</div>
+        ${submission.answers.motivation === 'other' && submission.answers.motivationOther ? `<div class="answer"><em>Details: ${submission.answers.motivationOther}</em></div>` : ''}
       </div>
 
       <div class="section">
-        <div class="label">⏰ QUESTION 4: How soon do you need this?</div>
+        <div class="label">⏰ QUESTION 3: How fast do you need this live?</div>
         <div class="answer">${submission.answers.urgency}</div>
       </div>
     </div>

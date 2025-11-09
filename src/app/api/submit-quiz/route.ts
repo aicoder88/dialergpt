@@ -32,24 +32,19 @@ export async function POST(request: NextRequest) {
       <p><strong>📧 Respondent Email:</strong> <a href="mailto:${email}">${email}</a></p>
 
       <div class="section">
-        <div class="label">❓ QUESTION 1: What's your biggest pain point in sales right now?</div>
-        <div class="answer">${answers.painPoint}</div>
-        ${answers.painPoint === 'other' && answers.painPointOther ? `<div class="answer"><em>Details: ${answers.painPointOther}</em></div>` : ''}
-      </div>
-
-      <div class="section">
-        <div class="label">🛠️ QUESTION 2: Which tool would you pay for RIGHT NOW?</div>
+        <div class="label">🛠️ QUESTION 1: What should we build first?</div>
         <div class="answer">${answers.tool}</div>
         ${answers.tool === 'other' && answers.toolOther ? `<div class="answer"><em>Details: ${answers.toolOther}</em></div>` : ''}
       </div>
 
       <div class="section">
-        <div class="label">💰 QUESTION 3: What would you pay per month for this tool?</div>
-        <div class="answer">${answers.budget}</div>
+        <div class="label">💬 QUESTION 2: Why does your team need this built?</div>
+        <div class="answer">${answers.motivation}</div>
+        ${answers.motivation === 'other' && answers.motivationOther ? `<div class="answer"><em>Details: ${answers.motivationOther}</em></div>` : ''}
       </div>
 
       <div class="section">
-        <div class="label">⏰ QUESTION 4: How soon do you need this?</div>
+        <div class="label">⏰ QUESTION 3: How fast do you need this live?</div>
         <div class="answer">${answers.urgency}</div>
       </div>
     </div>
@@ -94,10 +89,9 @@ export async function POST(request: NextRequest) {
       console.log('From:', email);
       console.log('Timestamp:', new Date(timestamp).toLocaleString());
       console.log('\nAnswers:');
-      console.log('1. Pain Point:', answers.painPoint, answers.painPointOther || '');
-      console.log('2. Tool:', answers.tool, answers.toolOther || '');
-      console.log('3. Budget:', answers.budget);
-      console.log('4. Urgency:', answers.urgency);
+      console.log('1. Tool:', answers.tool, answers.toolOther || '');
+      console.log('2. Motivation:', answers.motivation, answers.motivationOther || '');
+      console.log('3. Urgency:', answers.urgency);
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
     }
 
@@ -114,4 +108,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
