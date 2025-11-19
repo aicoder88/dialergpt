@@ -88,8 +88,8 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
     step <= TOTAL_QUESTIONS
       ? `Question ${step} of ${TOTAL_QUESTIONS}`
       : step === emailStep
-      ? "Stay in the loop"
-      : "All set!";
+        ? "Stay in the loop"
+        : "All set!";
   const emailPreview = email.trim();
 
   const handleNext = () => {
@@ -180,11 +180,11 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <Card className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 border-0 brand-shadow">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+      <Card className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto glass-card border-0 brand-shadow">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-white/10 transition-colors"
         >
           <X className="h-5 w-5" />
         </button>
@@ -192,7 +192,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
         <CardContent className="p-8 md:p-12">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center rounded-full border-2 border-orange-400 bg-orange-100 dark:border-orange-600 dark:bg-orange-950/70 px-5 py-2.5 text-sm font-bold text-orange-700 dark:text-orange-300 mb-4 animate-pulse">
+            <div className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-5 py-2.5 text-sm font-bold text-orange-600 dark:text-orange-400 mb-4 animate-pulse">
               <Sparkles className="mr-2 h-5 w-5" />
               🚨 THIS SITE ISN'T REAL YET - WE NEED YOUR INPUT!
             </div>
@@ -201,29 +201,29 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 We're Building the Sales Tool YOU Actually Want. Help Us Build It.
               </span>
             </h2>
-            <div className="bg-yellow-50 dark:bg-yellow-950/30 border-2 border-yellow-400 dark:border-yellow-600 rounded-lg p-4 mb-4">
-              <p className="text-lg font-semibold text-yellow-900 dark:text-yellow-200 mb-2">
+            <div className="glass-panel border-yellow-500/30 bg-yellow-500/5 p-4 mb-4">
+              <p className="text-lg font-semibold text-yellow-700 dark:text-yellow-400 mb-2">
                 ⚠️ HOLD UP: This landing page is a MOCKUP
               </p>
-              <p className="text-base text-yellow-800 dark:text-yellow-300">
+              <p className="text-base text-yellow-800/80 dark:text-yellow-300/80">
                 We haven't built anything yet. <strong>YOU decide what we build.</strong> This is your chance to shape the product from day one. Vote below and we'll build whatever gets the most votes.
               </p>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               Tired of sales tools that suck? <strong className="text-purple-600 dark:text-purple-400">We're letting YOU decide what we build next.</strong> Vote for the tool you'd actually pay for—and get early access when we launch.
             </p>
-            <div className="mt-6 bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 text-left">
-              <p className="text-base font-semibold text-purple-900 dark:text-purple-200">
+            <div className="mt-6 glass-panel border-purple-500/30 bg-purple-500/5 p-4 text-left">
+              <p className="text-base font-semibold text-purple-700 dark:text-purple-300">
                 Answer 3 quick questions → we build the winner → you get founding-member pricing + first access.
               </p>
-              <p className="text-sm text-purple-800 dark:text-purple-300 mt-1">
+              <p className="text-sm text-purple-600/80 dark:text-purple-400/80 mt-1">
                 Help us decide what to ship and we'll keep you in the loop as prototypes turn into real product.
               </p>
             </div>
           </div>
 
           {/* Social Proof Bar */}
-          <div className="mb-8 p-4 rounded-lg bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 border border-purple-200/50 dark:border-purple-800/50">
+          <div className="mb-8 p-4 rounded-lg glass-panel border-purple-500/20">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-purple-600" />
@@ -280,11 +280,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 ].map((option) => (
                   <label
                     key={option.title}
-                    className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                      answers.tool === option.title
-                        ? "border-purple-600 bg-purple-50 dark:bg-purple-950/30"
-                        : "border-gray-200 dark:border-gray-700 hover:border-purple-300"
-                    }`}
+                    className={`flex items-start p-4 rounded-lg border cursor-pointer transition-all ${answers.tool === option.title
+                        ? "border-purple-500 bg-purple-500/10 ring-1 ring-purple-500"
+                        : "border-white/10 hover:border-purple-500/50 hover:bg-white/5"
+                      }`}
                   >
                     <input
                       type="radio"
@@ -294,7 +293,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                       onChange={(e) =>
                         setAnswers({ ...answers, tool: e.target.value })
                       }
-                      className="mt-1 mr-3"
+                      className="mt-1 mr-3 accent-purple-600"
                     />
                     <div className="flex-1">
                       <div className="font-semibold mb-1">{option.title}</div>
@@ -302,7 +301,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                     </div>
                   </label>
                 ))}
-                <div className="flex items-start p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+                <div className="flex items-start p-4 rounded-lg border border-white/10 hover:border-purple-500/50 hover:bg-white/5 transition-all">
                   <input
                     type="radio"
                     name="tool"
@@ -311,7 +310,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                     onChange={(e) =>
                       setAnswers({ ...answers, tool: e.target.value })
                     }
-                    className="mt-1 mr-3"
+                    className="mt-1 mr-3 accent-purple-600"
                   />
                   <div className="flex-1">
                     <span className="block mb-2">Something else:</span>
@@ -322,6 +321,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                         setAnswers({ ...answers, toolOther: e.target.value })
                       }
                       disabled={answers.tool !== "other"}
+                      className="bg-white/5 border-white/10"
                     />
                   </div>
                 </div>
@@ -349,11 +349,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 ].map((option) => (
                   <label
                     key={option}
-                    className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                      answers.motivation === option
-                        ? "border-purple-600 bg-purple-50 dark:bg-purple-950/30"
-                        : "border-gray-200 dark:border-gray-700 hover:border-purple-300"
-                    }`}
+                    className={`flex items-start p-4 rounded-lg border cursor-pointer transition-all ${answers.motivation === option
+                        ? "border-purple-500 bg-purple-500/10 ring-1 ring-purple-500"
+                        : "border-white/10 hover:border-purple-500/50 hover:bg-white/5"
+                      }`}
                   >
                     <input
                       type="radio"
@@ -363,12 +362,12 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                       onChange={(e) =>
                         setAnswers({ ...answers, motivation: e.target.value })
                       }
-                      className="mt-1 mr-3"
+                      className="mt-1 mr-3 accent-purple-600"
                     />
                     <span className="flex-1 font-medium">{option}</span>
                   </label>
                 ))}
-                <div className="flex items-start p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+                <div className="flex items-start p-4 rounded-lg border border-white/10 hover:border-purple-500/50 hover:bg-white/5 transition-all">
                   <input
                     type="radio"
                     name="motivation"
@@ -377,7 +376,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                     onChange={(e) =>
                       setAnswers({ ...answers, motivation: e.target.value })
                     }
-                    className="mt-1 mr-3"
+                    className="mt-1 mr-3 accent-purple-600"
                   />
                   <div className="flex-1">
                     <span className="block mb-2">Something else:</span>
@@ -391,6 +390,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                         })
                       }
                       disabled={answers.motivation !== "other"}
+                      className="bg-white/5 border-white/10"
                     />
                   </div>
                 </div>
@@ -416,11 +416,10 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                 ].map((option) => (
                   <label
                     key={option}
-                    className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                      answers.urgency === option
-                        ? "border-purple-600 bg-purple-50 dark:bg-purple-950/30"
-                        : "border-gray-200 dark:border-gray-700 hover:border-purple-300"
-                    }`}
+                    className={`flex items-center p-4 rounded-lg border cursor-pointer transition-all ${answers.urgency === option
+                        ? "border-purple-500 bg-purple-500/10 ring-1 ring-purple-500"
+                        : "border-white/10 hover:border-purple-500/50 hover:bg-white/5"
+                      }`}
                   >
                     <input
                       type="radio"
@@ -430,7 +429,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                       onChange={(e) =>
                         setAnswers({ ...answers, urgency: e.target.value })
                       }
-                      className="mr-3"
+                      className="mr-3 accent-purple-600"
                     />
                     <span className="flex-1 font-medium">{option}</span>
                   </label>
@@ -471,7 +470,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                       setSubmissionError(null);
                     }
                   }}
-                  className="text-lg p-6"
+                  className="text-lg p-6 bg-white/5 border-white/10"
                 />
               </div>
             </div>
@@ -502,7 +501,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
                   setSubmissionError(null);
                   setStep(step - 1);
                 }}
-                className="flex-1"
+                className="flex-1 border-white/10 hover:bg-white/5"
               >
                 Back
               </Button>
@@ -511,7 +510,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
               <Button
                 onClick={handleNext}
                 disabled={!isStepValid() || isSubmitting}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/20"
               >
                 {step === TOTAL_QUESTIONS ? "Continue" : "Next Question"}
               </Button>
@@ -520,7 +519,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
               <Button
                 onClick={handleSubmit}
                 disabled={!isStepValid() || isSubmitting}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/20"
               >
                 {isSubmitting ? "Submitting..." : "Get Early Access"}
               </Button>
@@ -528,7 +527,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
             {step === successStep && submissionComplete && (
               <Button
                 onClick={onClose}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+                className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/20"
               >
                 Close
               </Button>
@@ -543,11 +542,11 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose }) => {
 
           {/* Footer Message */}
           <div className="mt-8 text-center space-y-3">
-            <div className="bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-              <p className="font-bold text-purple-900 dark:text-purple-200 text-base mb-2">
+            <div className="glass-panel border-purple-500/20 bg-purple-500/5 p-4">
+              <p className="font-bold text-purple-700 dark:text-purple-300 text-base mb-2">
                 💡 We're not another faceless SaaS company.
               </p>
-              <p className="text-sm text-purple-800 dark:text-purple-300">
+              <p className="text-sm text-purple-600/80 dark:text-purple-400/80">
                 We're building this WITH sales reps, not for them. Your vote = our roadmap. Top-voted tool gets built first.
               </p>
             </div>
