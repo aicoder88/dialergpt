@@ -31,12 +31,12 @@ const HeroSection = () => {
               Training Reps Costs
               <br />
               <span className="gradient-text">
-                $5,000 & 6 Months.
+                $5,000 & Several Months.
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-[600px] leading-relaxed">
-              DialerGPT lets your team practice with AI, get real-time coaching, and qualify their skills before they ever talk to a real customer.
+              DialerGPT is the AI-powered training ground where your sales team masters their pitch, perfects objection handling, and builds confidence before risking a single lead.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

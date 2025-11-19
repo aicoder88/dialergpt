@@ -43,7 +43,7 @@ const ROISection = () => {
                                         <Clock className="h-5 w-5 text-red-400" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-lg text-white">3 - 6 Months</h4>
+                                        <h4 className="font-bold text-lg text-white">Several Months</h4>
                                         <p className="text-muted-foreground">Time to full productivity (ramp time).</p>
                                     </div>
                                 </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import ROISection from "@/components/ROISection";
+import AnalyticsSection from "@/components/AnalyticsSection";
 import PricingSection from "@/components/PricingSection";
 import QuizModal from "@/components/QuizModal";
 import { ThemeSwitcher } from "@/components/theme-switcher";
@@ -78,6 +79,9 @@ export default function Home() {
 
       {/* ROI Section (The Economics) */}
       <ROISection />
+
+      {/* Analytics Section */}
+      <AnalyticsSection />
 
       {/* Pricing Section */}
       <PricingSection />
