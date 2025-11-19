@@ -1,11 +1,24 @@
+"use client";
+
 import React from "react";
 import { Card } from "./ui/card";
 import { Activity, BarChart3, Brain, LineChart, MousePointer2, PieChart, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const AnalyticsSection = () => {
     return (
-        <section className="w-full py-24 relative overflow-hidden bg-black/40 border-y border-white/5">
-            <div className="container mx-auto px-4 md:px-6">
+        <section className="w-full py-24 relative overflow-hidden border-y border-white/5">
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/analytics-bg.png"
+                    alt="Analytics Background"
+                    fill
+                    className="object-cover opacity-20"
+                />
+                <div className="absolute inset-0 bg-black/80" />
+            </div>
+            <div className="container relative z-10 mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row gap-12 items-center">
 
                     {/* Text Content */}
@@ -68,7 +81,12 @@ const AnalyticsSection = () => {
                                             <span className="text-purple-400">94%</span>
                                         </div>
                                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                            <div className="h-full bg-purple-500 w-[94%] animate-pulse" />
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: "94%" }}
+                                                transition={{ duration: 1, delay: 0.2 }}
+                                                className="h-full bg-purple-500 rounded-full"
+                                            />
                                         </div>
                                     </div>
 
@@ -78,7 +96,12 @@ const AnalyticsSection = () => {
                                             <span className="text-blue-400">88%</span>
                                         </div>
                                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                            <div className="h-full bg-blue-500 w-[88%]" />
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: "88%" }}
+                                                transition={{ duration: 1, delay: 0.4 }}
+                                                className="h-full bg-blue-500 rounded-full"
+                                            />
                                         </div>
                                     </div>
 
@@ -88,7 +111,12 @@ const AnalyticsSection = () => {
                                             <span className="text-green-400">91%</span>
                                         </div>
                                         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                            <div className="h-full bg-green-500 w-[91%]" />
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: "91%" }}
+                                                transition={{ duration: 1, delay: 0.6 }}
+                                                className="h-full bg-green-500 rounded-full"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -103,10 +131,12 @@ const AnalyticsSection = () => {
                                     </div>
                                     <div className="flex items-end gap-1 h-24 w-full">
                                         {[40, 65, 55, 80, 75, 90, 85].map((height, i) => (
-                                            <div
+                                            <motion.div
                                                 key={i}
-                                                className="flex-1 bg-gradient-to-t from-green-500/20 to-green-500 rounded-t-sm transition-all duration-1000 ease-in-out hover:opacity-80"
-                                                style={{ height: `${height}%` }}
+                                                initial={{ height: 0 }}
+                                                whileInView={{ height: `${height}%` }}
+                                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                                className="flex-1 bg-gradient-to-t from-green-500/20 to-green-500 rounded-t-sm hover:opacity-80"
                                             />
                                         ))}
                                     </div>

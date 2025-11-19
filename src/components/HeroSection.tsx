@@ -8,15 +8,15 @@ const HeroSection = () => {
   return (
     <section className="relative w-full py-20 md:py-32 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-0">
         <Image
           src="/hero-bg.png"
           alt="Background"
           fill
-          className="object-cover opacity-40"
+          className="object-cover opacity-60"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/70 to-background" />
       </div>
 
       <div className="relative container mx-auto px-4 md:px-6">
