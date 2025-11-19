@@ -87,8 +87,7 @@ async function sendEmailNotification(submission: QuizSubmission) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey) {
-    console.warn("RESEND_API_KEY not set - email notification skipped");
-    return;
+    throw new Error("RESEND_API_KEY not set – cannot send quiz notification email");
   }
 
   const timestamp = new Date().toISOString();
@@ -159,13 +158,20 @@ async function sendEmailNotification(submission: QuizSubmission) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Failed to send email via Resend:', errorText);
-    } else {
-      console.info('Quiz notification email sent successfully');
+      const errorText = await response.text().catch(() => "");
+      throw new Error(
+        errorText
+          ? `Resend API error: ${errorText}`
+          : `Resend API returned status ${response.status}`
+      );
     }
+
+    console.info("Quiz notification email sent successfully");
   } catch (error) {
-    console.error("Failed to send email notification", error);
+    const message =
+      error instanceof Error ? error.message : "Unknown error sending quiz email";
+    console.error("Failed to send email notification", message);
+    throw error instanceof Error ? error : new Error(message);
   }
 }
 
@@ -201,11 +207,27 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email notification and forward to webhook (both are non-blocking)
-    await Promise.allSettled([
+    const [emailResult, webhookResult] = await Promise.allSettled([
       sendEmailNotification(submission),
       forwardToWebhook(submission),
     ]);
+
+    if (emailResult.status === "rejected") {
+      console.error("Quiz email delivery failed", emailResult.reason);
+      return NextResponse.json(
+        {
+          error:
+            emailResult.reason instanceof Error
+              ? emailResult.reason.message
+              : "Unable to send confirmation email right now",
+        },
+        { status: 502 }
+      );
+    }
+
+    if (webhookResult.status === "rejected") {
+      console.error("Quiz webhook forwarding failed", webhookResult.reason);
+    }
 
     console.info("Quiz submission received", {
       ...submission,

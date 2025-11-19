@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PricingSection from "@/components/PricingSection";
@@ -14,14 +14,7 @@ import { ArrowRight, CheckCircle, Zap, Database, Sparkles, Target, Shield, Vote 
 export default function Home() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
 
-  useEffect(() => {
-    // Auto-open quiz on page load after a short delay
-    const timer = setTimeout(() => {
-      setIsQuizOpen(true);
-    }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-background">
@@ -76,7 +69,7 @@ export default function Home() {
               Join thousands of sales teams who've revolutionized their lead qualification with AI
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="group hover:scale-105 transition-all duration-300 border-0 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 brand-shadow">
               <CardContent className="pt-8 pb-8">

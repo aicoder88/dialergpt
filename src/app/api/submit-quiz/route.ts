@@ -61,38 +61,30 @@ export async function POST(request: NextRequest) {
     // Get your free API key at https://resend.com
     const resendApiKey = process.env.RESEND_API_KEY;
 
-    if (resendApiKey) {
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${resendApiKey}`,
-        },
-        body: JSON.stringify({
-          from: 'DialerGPT Quiz <onboarding@resend.dev>', // Use your verified domain in production
-          to: ['dialergpt@gmail.com'],
-          reply_to: email,
-          subject: `🎯 New Quiz Response from ${email}`,
-          html: htmlContent,
-        }),
-      });
+    if (!resendApiKey) {
+      throw new Error("RESEND_API_KEY not set – cannot send quiz notification email");
+    }
 
-      if (!response.ok) {
-        console.error('Resend API error:', await response.text());
-      }
-    } else {
-      // Fallback: Just log to console if no API key is set
-      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('📧 QUIZ SUBMISSION (Email not sent - no RESEND_API_KEY)');
-      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('To:', 'dialergpt@gmail.com');
-      console.log('From:', email);
-      console.log('Timestamp:', new Date(timestamp).toLocaleString());
-      console.log('\nAnswers:');
-      console.log('1. Tool:', answers.tool, answers.toolOther || '');
-      console.log('2. Motivation:', answers.motivation, answers.motivationOther || '');
-      console.log('3. Urgency:', answers.urgency);
-      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: 'DialerGPT Quiz <onboarding@resend.dev>', // Use your verified domain in production
+        to: ['dialergpt@gmail.com'],
+        reply_to: email,
+        subject: `🎯 New Quiz Response from ${email}`,
+        html: htmlContent,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => '');
+      throw new Error(
+        errorText ? `Resend API error: ${errorText}` : `Resend API returned status ${response.status}`
+      );
     }
 
     return NextResponse.json({
