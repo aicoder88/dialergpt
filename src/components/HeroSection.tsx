@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, CheckCircle, Play, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
 import { Card } from "./ui/card";
@@ -6,10 +7,16 @@ import { Card } from "./ui/card";
 const HeroSection = () => {
   return (
     <section className="relative w-full py-20 md:py-32 overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-background">
-        <div className="hero-glow top-0 left-1/4 w-[800px] h-[800px] animate-pulse" />
-        <div className="hero-glow bottom-0 right-1/4 w-[600px] h-[600px] animate-pulse delay-1000" />
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-bg.png"
+          alt="Background"
+          fill
+          className="object-cover opacity-40"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
       </div>
 
       <div className="relative container mx-auto px-4 md:px-6">

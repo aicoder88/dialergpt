@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import ROISection from "@/components/ROISection";
@@ -9,7 +10,7 @@ import QuizModal from "@/components/QuizModal";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
-import { Zap, Vote, Server, Shield, Activity } from "lucide-react";
+import { Vote, Server, Shield, Activity } from "lucide-react";
 
 export default function Home() {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
@@ -18,10 +19,14 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center bg-background overflow-x-hidden">
       {/* Navigation */}
       <nav className="w-full flex justify-between items-center py-4 px-6 md:px-12 lg:px-24 border-b border-white/10 backdrop-blur-md bg-background/80 sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <Zap className="h-6 w-6 text-purple-500" />
-            <div className="absolute -inset-1 bg-purple-500/50 rounded-full blur opacity-50 animate-pulse"></div>
+        <div className="flex items-center gap-3">
+          <div className="relative w-8 h-8">
+            <Image
+              src="/logo.png"
+              alt="DialerGPT Logo"
+              fill
+              className="object-contain"
+            />
           </div>
           <span className="font-bold text-xl tracking-tight">DialerGPT</span>
         </div>
@@ -85,8 +90,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="relative">
-                <Zap className="h-6 w-6 text-purple-500" />
+              <div className="relative w-8 h-8">
+                <Image
+                  src="/logo.png"
+                  alt="DialerGPT Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <span className="font-bold text-xl">DialerGPT</span>
             </div>

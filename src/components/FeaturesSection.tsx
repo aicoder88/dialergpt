@@ -6,7 +6,7 @@ const features = [
     {
         icon: <Mic className="h-6 w-6 text-blue-400" />,
         title: "Real-time Call Analysis",
-        description: "Powered by Amazon Transcribe",
+        description: "Advanced Speech Recognition",
         details: "Convert training calls into text instantly for AI processing. Analyze tone, sentiment, and keyword usage in real-time.",
         gradient: "from-blue-500/20 to-cyan-500/20",
         border: "group-hover:border-blue-500/50"
@@ -14,7 +14,7 @@ const features = [
     {
         icon: <Users className="h-6 w-6 text-purple-400" />,
         title: "Realistic AI Personas",
-        description: "Powered by Amazon Polly",
+        description: "Neural Text-to-Speech",
         details: "Practice with diverse AI customer voices. From angry customers to confused leads, simulate any scenario.",
         gradient: "from-purple-500/20 to-pink-500/20",
         border: "group-hover:border-purple-500/50"
@@ -22,31 +22,31 @@ const features = [
     {
         icon: <Brain className="h-6 w-6 text-yellow-400" />,
         title: "Instant Coaching",
-        description: "Powered by Amazon Bedrock",
-        details: "Get personalized feedback immediately after every call. Our Claude-powered coach identifies improvement areas instantly.",
+        description: "Generative AI Feedback",
+        details: "Get personalized feedback immediately after every call. Our AI coach identifies improvement areas instantly.",
         gradient: "from-yellow-500/20 to-orange-500/20",
         border: "group-hover:border-yellow-500/50"
     },
     {
         icon: <Shield className="h-6 w-6 text-green-400" />,
         title: "Enterprise Security",
-        description: "Built on AWS Infrastructure",
-        details: "Bank-grade security with Amazon S3 & RDS. Your training data is encrypted, compliant, and safe.",
+        description: "Bank-Grade Encryption",
+        details: "Your training data is encrypted, compliant, and safe. We adhere to strict security standards.",
         gradient: "from-green-500/20 to-emerald-500/20",
         border: "group-hover:border-green-500/50"
     },
     {
         icon: <Zap className="h-6 w-6 text-indigo-400" />,
         title: "Low Latency",
-        description: "Powered by AWS Lambda",
-        details: "Experience lag-free conversations. Our serverless architecture ensures conversations feel natural and fluid.",
+        description: "High-Performance Edge Network",
+        details: "Experience lag-free conversations. Our architecture ensures conversations feel natural and fluid.",
         gradient: "from-indigo-500/20 to-violet-500/20",
         border: "group-hover:border-indigo-500/50"
     },
     {
         icon: <Server className="h-6 w-6 text-red-400" />,
         title: "Infinite Scalability",
-        description: "Powered by Amazon Connect",
+        description: "Cloud-Native Infrastructure",
         details: "Train 5 reps or 5,000. Our infrastructure scales automatically to meet your training demands.",
         gradient: "from-red-500/20 to-rose-500/20",
         border: "group-hover:border-red-500/50"
@@ -61,10 +61,10 @@ const FeaturesSection = () => {
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                        Built on <span className="gradient-text">AWS Enterprise Tech</span>
+                        Built on <span className="gradient-text">Next-Gen AI Technology</span>
                     </h2>
                     <p className="text-xl text-muted-foreground">
-                        We leverage the power of Amazon Web Services to deliver a training platform that's secure, scalable, and incredibly smart.
+                        We leverage cutting-edge artificial intelligence to deliver a training platform that's secure, scalable, and incredibly smart.
                     </p>
                 </div>
 
