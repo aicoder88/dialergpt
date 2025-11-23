@@ -5,39 +5,45 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Zap, TrendingUp, Globe, Server, Users, Clock, DollarSign, Target, Rocket, Shield, Brain } from "lucide-react";
 
 // IMAGE SUGGESTIONS (as comments for each slide):
-// Slide 1: Dark abstract network visualization with glowing nodes
-// Slide 2: Frustrated sales team looking at declining charts
-// Slide 3: Stopwatch showing "1 hour" with money burning
-// Slide 4: AI brain with voice waveforms
-// Slide 5: Exponential growth chart, upward trajectory
-// Slide 6: Server racks glowing with activity, data flowing
-// Slide 7: Dashboard showing real-time metrics
-// Slide 8: Global map with connection lines
-// Slide 9: Enterprise logos (social proof)
-// Slide 10: Infrastructure diagram showing scale
-// Slide 11: ROI calculator showing massive returns
-// Slide 12: Handshake with futuristic overlay
+// Slide 1: Executive staring at quarterly revenue chart, clock in background
+// Slide 2: Stack of cash burning with timer overlay
+// Slide 3: Split screen - confident rep vs struggling rep on call
+// Slide 4: Elegant AI waveform with neural network overlay
+// Slide 5: Clean architecture diagram showing distributed system
+// Slide 6: Professional meeting room with Purrify branding
+// Slide 7: Sophisticated dashboard showing training metrics
+// Slide 8: Minimalist server infrastructure visualization
+// Slide 9: Graph showing exponential growth trajectory
+// Slide 10: Market size visualization - concentric circles
+// Slide 11: Professional handshake with subtle tech overlay
+// Slide 12: Forward-looking horizon with modern skyline
 
 const slides = [
     {
         id: "hook",
         content: (
-            <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                <motion.h1
+            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-6xl mx-auto">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mb-6"
+                    className="mb-8"
                 >
-                    Every Second You Wait,
-                </motion.h1>
+                    <p className="text-xl md:text-2xl text-gray-400 mb-4 font-light tracking-wide">
+                        A question for the board:
+                    </p>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+                        What if your newest rep<br />could be <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">field-ready</span><br />in two weeks?
+                    </h1>
+                </motion.div>
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
-                    className="text-3xl md:text-5xl text-white font-bold"
+                    className="text-xl md:text-2xl text-gray-300 max-w-4xl leading-relaxed"
                 >
-                    Your Competitor Closes Another Deal.
+                    Not six months from now. Not after burning through your best leads.{" "}
+                    <span className="text-white font-medium">Two weeks.</span>
                 </motion.p>
             </div>
         ),
@@ -52,31 +58,44 @@ const slides = [
                     whileInView={{ scale: 1, opacity: 1 }}
                     className="text-4xl md:text-6xl font-bold text-white mb-8"
                 >
-                    The Brutal Truth About Sales
+                    The Invisible Burn Rate
                 </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
                     <motion.div
                         initial={{ x: -50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="p-6 border border-red-500/30 bg-red-900/10 rounded-2xl backdrop-blur-sm"
+                        className="p-8 border border-gray-700/50 bg-black/40 rounded-xl backdrop-blur-sm text-left"
                     >
-                        <p className="text-5xl font-black text-red-400 mb-2">78%</p>
-                        <p className="text-lg text-gray-300">of buyers choose whoever responds first</p>
+                        <DollarSign className="w-12 h-12 text-red-400 mb-4" />
+                        <p className="text-5xl font-bold text-white mb-3">$3,000</p>
+                        <p className="text-lg text-gray-300 mb-3">per rep in training costs</p>
+                        <p className="text-sm text-gray-500">That's before they take their first call.</p>
                     </motion.div>
                     <motion.div
                         initial={{ x: 50, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        className="p-6 border border-red-500/30 bg-red-900/10 rounded-2xl backdrop-blur-sm"
+                        className="p-8 border border-gray-700/50 bg-black/40 rounded-xl backdrop-blur-sm text-left"
                     >
-                        <p className="text-5xl font-black text-red-400 mb-2">$240B</p>
-                        <p className="text-lg text-gray-300">lost annually to slow follow-up</p>
+                        <Clock className="w-12 h-12 text-orange-400 mb-4" />
+                        <p className="text-5xl font-bold text-white mb-3">3-6 months</p>
+                        <p className="text-lg text-gray-300 mb-3">until they're productive</p>
+                        <p className="text-sm text-gray-500">Your best leads are the training ground.</p>
                     </motion.div>
                 </div>
-                <p className="text-xl text-gray-400 mt-8 italic">
-                    Your sales team is drowning. And it's costing you everything.
-                </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-12 p-6 border border-red-900/30 bg-red-950/20 rounded-xl max-w-3xl"
+                >
+                    <p className="text-xl text-gray-300 leading-relaxed">
+                        Every month of training delays is{" "}
+                        <span className="text-white font-semibold">lost revenue, burned leads, and compounding opportunity cost</span>.
+                        The meter is running whether your reps are ready or not.
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-zinc-950",
@@ -84,29 +103,42 @@ const slides = [
     {
         id: "urgency",
         content: (
-            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
-                <Clock className="w-24 h-24 text-yellow-500 mb-8 animate-pulse" />
+            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
                 <motion.h2
                     initial={{ scale: 0.9, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
-                    className="text-4xl md:text-6xl font-bold text-white mb-6"
+                    className="text-4xl md:text-6xl font-bold text-white mb-12"
                 >
-                    The First 60 Minutes
+                    The Training Paradox
                 </motion.h2>
-                <div className="p-8 border border-yellow-500/30 bg-yellow-900/10 rounded-2xl backdrop-blur-sm">
-                    <p className="text-3xl md:text-5xl font-black text-yellow-400 mb-4">
-                        70% of Leads Lost
-                    </p>
-                    <p className="text-xl text-gray-300">
-                        If you don't contact them within the first hour, they're gone.
-                    </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-8">
+                    <div className="p-8 border border-white/10 bg-white/5 rounded-xl text-left">
+                        <p className="text-sm uppercase tracking-widest text-gray-500 mb-3">The Reality</p>
+                        <p className="text-xl text-gray-300 leading-relaxed">
+                            Your top performer took 400 calls to find their rhythm.
+                            That's 400 prospects who heard their awkward pauses,
+                            fumbled objections, and uncertain close attempts.
+                        </p>
+                    </div>
+                    <div className="p-8 border border-purple-500/30 bg-purple-900/10 rounded-xl text-left">
+                        <p className="text-sm uppercase tracking-widest text-purple-400 mb-3">The Question</p>
+                        <p className="text-xl text-white leading-relaxed font-medium">
+                            What if those 400 practice calls happened before
+                            your rep ever picked up the phone?
+                        </p>
+                    </div>
                 </div>
-                <p className="text-2xl text-white font-bold mt-8">
-                    Can your team call 1,000 leads in 60 minutes?
-                </p>
-                <p className="text-xl text-gray-400 mt-4">
-                    We can. And we do it every single day.
-                </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="mt-8 p-6 bg-gradient-to-r from-purple-950/50 to-blue-950/50 border border-purple-500/20 rounded-xl max-w-3xl"
+                >
+                    <p className="text-2xl text-white leading-relaxed">
+                        You can't afford to waste leads on training.<br />
+                        <span className="text-gray-400 text-lg">But you can't afford untrained reps either.</span>
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-slate-950",
@@ -115,33 +147,39 @@ const slides = [
         id: "solution-intro",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <Brain className="w-20 h-20 text-purple-400 mb-6" />
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    className="text-5xl md:text-7xl font-bold text-white mb-6"
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="mb-12"
                 >
-                    DialerGPT
-                </motion.h2>
-                <p className="text-2xl md:text-4xl text-gray-300 mb-8 leading-relaxed">
-                    The world's first <span className="text-purple-400 font-bold">AI-native</span> sales qualification system
-                </p>
+                    <p className="text-lg uppercase tracking-widest text-purple-400 mb-6 font-light">
+                        Introducing
+                    </p>
+                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                        DialerGPT
+                    </h2>
+                    <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                        An AI-powered training environment where your sales team practices{" "}
+                        <span className="text-white font-medium">hundreds of realistic conversations</span>{" "}
+                        before they ever touch a real prospect.
+                    </p>
+                </motion.div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-8">
                     {[
-                        { icon: Zap, title: "Instant", desc: "Sub-second response time" },
-                        { icon: Brain, title: "Intelligent", desc: "Human-level conversations" },
-                        { icon: Globe, title: "Infinite", desc: "Unlimited concurrent calls" },
+                        { icon: Brain, title: "Intelligent Personas", desc: "Realistic AI customers that challenge and coach" },
+                        { icon: Zap, title: "Instant Feedback", desc: "Real-time coaching on every call" },
+                        { icon: Target, title: "Safe Practice", desc: "Master objections without losing leads" },
                     ].map((item, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ y: 50, opacity: 0 }}
+                            initial={{ y: 30, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             transition={{ delay: idx * 0.15 }}
-                            className="p-6 rounded-2xl border border-purple-500/20 bg-purple-900/10 backdrop-blur-md"
+                            className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-left"
                         >
-                            <item.icon className="w-10 h-10 text-purple-400 mx-auto mb-3" />
-                            <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                            <p className="text-gray-400 text-sm">{item.desc}</p>
+                            <item.icon className="w-10 h-10 text-purple-400 mb-4" />
+                            <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -152,47 +190,44 @@ const slides = [
     {
         id: "traction",
         content: (
-            <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-12">
-                    The Numbers Don't Lie
+            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-6xl mx-auto">
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+                    How It Works
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-                    <div className="text-center">
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-green-400 to-emerald-600"
-                        >
-                            1.2M+
-                        </motion.div>
-                        <p className="text-xl text-gray-400 mt-2">Calls Processed</p>
-                    </div>
-                    <div className="text-center">
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            transition={{ delay: 0.15 }}
-                            className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-indigo-600"
-                        >
-                            347%
-                        </motion.div>
-                        <p className="text-xl text-gray-400 mt-2">Conversion Increase</p>
-                    </div>
-                    <div className="text-center">
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-purple-400 to-pink-600"
-                        >
-                            &lt;30s
-                        </motion.div>
-                        <p className="text-xl text-gray-400 mt-2">Average Response Time</p>
-                    </div>
-                </div>
-                <p className="text-2xl text-gray-300 mt-12 max-w-3xl">
-                    While your competitors are still dialing, we've already qualified the lead.
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Built on modern distributed architecture for enterprise-grade reliability
                 </p>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+                    {[
+                        { num: "01", title: "Upload Training Calls", desc: "Your best sales calls become the curriculum" },
+                        { num: "02", title: "AI Analyzes Patterns", desc: "Distributed processing extracts winning techniques" },
+                        { num: "03", title: "Rep Practices Live", desc: "Real-time voice conversations with instant feedback" },
+                        { num: "04", title: "Track Performance", desc: "Analytics dashboard shows progress and readiness" }
+                    ].map((step, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ y: 50, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm text-left"
+                        >
+                            <div className="text-4xl font-bold text-purple-400 mb-4">{step.num}</div>
+                            <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                            <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
+                        </motion.div>
+                    ))}
+                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-12 p-6 border border-purple-500/20 bg-purple-900/10 rounded-xl max-w-3xl"
+                >
+                    <p className="text-lg text-gray-300">
+                        <span className="text-white font-semibold">Serverless architecture</span> ensures zero downtime.{" "}
+                        <span className="text-white font-semibold">Edge-optimized delivery</span> keeps latency under 200ms globally.
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-gray-950",
@@ -201,36 +236,55 @@ const slides = [
         id: "infrastructure",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <Server className="w-20 h-20 text-blue-400 mb-6" />
+                <div className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-6 py-2 text-sm font-medium text-green-400 mb-8">
+                    <Shield className="mr-2 h-4 w-4" />
+                    Real Customer, Real Results
+                </div>
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-                    Built for <span className="text-blue-400">Massive Scale</span>
+                    Purrify Case Study
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    A leading Canadian pet care company transformed their sales training process
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-8">
                     <motion.div
                         initial={{ x: -30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        className="p-6 border border-blue-500/20 bg-blue-900/10 rounded-2xl backdrop-blur-sm text-left"
+                        className="p-8 border border-white/10 bg-white/5 rounded-xl text-left"
                     >
-                        <h3 className="text-2xl font-bold text-white mb-3">Distributed Architecture</h3>
-                        <p className="text-gray-400">
-                            Multi-region deployment with intelligent load balancing ensures zero downtime and lightning-fast response globally.
+                        <Clock className="w-10 h-10 text-red-400 mb-4" />
+                        <h3 className="text-2xl font-bold text-white mb-3">Before</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            New sales reps required months of shadowing and practice calls.
+                            Training bottlenecks limited team growth and delayed revenue.
                         </p>
                     </motion.div>
                     <motion.div
                         initial={{ x: 30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.15 }}
-                        className="p-6 border border-blue-500/20 bg-blue-900/10 rounded-2xl backdrop-blur-sm text-left"
+                        className="p-8 border border-green-500/20 bg-green-900/10 rounded-xl text-left"
                     >
-                        <h3 className="text-2xl font-bold text-white mb-3">Elastic Compute</h3>
-                        <p className="text-gray-400">
-                            Auto-scaling infrastructure handles traffic spikes seamlessly—from 100 to 100,000 concurrent calls instantly.
+                        <TrendingUp className="w-10 h-10 text-green-400 mb-4" />
+                        <h3 className="text-2xl font-bold text-white mb-3">After</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            Reps now train on actual past calls with AI personas. Training time reduced dramatically,
+                            costs slashed, and confidence soared before first prospect contact.
                         </p>
                     </motion.div>
                 </div>
-                <p className="text-xl text-gray-300 mt-8">
-                    Our infrastructure processes <span className="text-white font-bold">50,000+ voice interactions per hour</span> with sub-second latency.
-                </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="p-6 border border-green-500/30 bg-green-900/10 rounded-xl max-w-3xl"
+                >
+                    <p className="text-lg text-gray-300">
+                        <span className="text-white font-semibold">"Our reps are closing deals faster than ever. The AI training removed all the guesswork."</span>
+                        <br />
+                        <span className="text-sm text-gray-500 mt-2 block">— Sales Director, Purrify</span>
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-zinc-950",
@@ -240,40 +294,32 @@ const slides = [
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                    Intelligence That Scales
+                    The Platform
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-                    <motion.div
-                        initial={{ y: 30, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        className="p-8 border border-purple-500/20 bg-purple-900/10 rounded-2xl backdrop-blur-sm"
-                    >
-                        <Target className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                        <h3 className="text-2xl font-bold text-white mb-3">Context-Aware Conversations</h3>
-                        <p className="text-gray-400">
-                            Our models understand industry jargon, buyer intent, and objection patterns across 47 verticals.
-                        </p>
-                    </motion.div>
-                    <motion.div
-                        initial={{ y: 30, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.15 }}
-                        className="p-8 border border-purple-500/20 bg-purple-900/10 rounded-2xl backdrop-blur-sm"
-                    >
-                        <Rocket className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                        <h3 className="text-2xl font-bold text-white mb-3">Real-Time Learning</h3>
-                        <p className="text-gray-400">
-                            Every conversation improves the system. We process millions of data points daily to optimize performance.
-                        </p>
-                    </motion.div>
-                </div>
-                <div className="mt-8 p-6 border border-purple-500/30 bg-purple-900/20 rounded-2xl backdrop-blur-sm max-w-3xl">
-                    <p className="text-2xl text-white font-bold mb-2">
-                        Training on 10M+ sales conversations
-                    </p>
-                    <p className="text-gray-400">
-                        Our models are fine-tuned on the largest proprietary dataset of successful B2B sales calls in existence.
-                    </p>
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Enterprise features that matter to CFOs and VPs of Sales
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                    {[
+                        { icon: Brain, title: "Real-Time Voice AI", desc: "Natural conversations with sub-200ms latency" },
+                        { icon: Target, title: "Custom Scenarios", desc: "Train on your actual sales calls and objections" },
+                        { icon: Users, title: "Team Analytics", desc: "Dashboard tracking per-rep progress and readiness" },
+                        { icon: Shield, title: "Enterprise Security", desc: "Bank-grade encryption, SOC2 & HIPAA ready" },
+                        { icon: Zap, title: "Instant Coaching", desc: "AI feedback delivered immediately after each call" },
+                        { icon: Globe, title: "Unlimited Scale", desc: "Train 5 reps or 5,000 simultaneously" },
+                    ].map((feature, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ y: 30, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="p-6 border border-white/10 bg-white/5 rounded-xl text-left"
+                        >
+                            <feature.icon className="w-10 h-10 text-purple-400 mb-4" />
+                            <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                            <p className="text-sm text-gray-400 leading-relaxed">{feature.desc}</p>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         ),
@@ -283,38 +329,55 @@ const slides = [
         id: "market-timing",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <TrendingUp className="w-20 h-20 text-green-400 mb-6" />
+                <Server className="w-20 h-20 text-blue-400 mb-6" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                    The Market is Exploding
+                    Built for Enterprise Scale
                 </h2>
-                <div className="space-y-6 w-full max-w-3xl">
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Modern cloud-native architecture designed for reliability and performance
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
                     <motion.div
-                        initial={{ x: -50, opacity: 0 }}
+                        initial={{ x: -30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm text-left"
+                        className="p-8 border border-blue-500/20 bg-blue-900/10 rounded-xl text-left"
                     >
-                        <p className="text-3xl font-bold text-green-400 mb-2">$5.1B → $47.6B</p>
-                        <p className="text-gray-300">AI sales market growth by 2030 (42.8% CAGR)</p>
+                        <h3 className="text-2xl font-bold text-white mb-4">Auto-Scaling Infrastructure</h3>
+                        <p className="text-gray-400 leading-relaxed mb-4">
+                            Elastic compute resources automatically scale based on demand.
+                            Handle 10 or 10,000 concurrent training sessions without manual intervention.
+                        </p>
+                        <p className="text-sm text-gray-500">
+                            Distributed across multiple availability zones for fault tolerance
+                        </p>
                     </motion.div>
                     <motion.div
-                        initial={{ x: -50, opacity: 0 }}
+                        initial={{ x: 30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.15 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm text-left"
+                        className="p-8 border border-blue-500/20 bg-blue-900/10 rounded-xl text-left"
                     >
-                        <p className="text-3xl font-bold text-green-400 mb-2">87% of enterprises</p>
-                        <p className="text-gray-300">plan to adopt AI sales tools within 18 months</p>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: -50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm text-left"
-                    >
-                        <p className="text-3xl font-bold text-green-400 mb-2">First-mover advantage</p>
-                        <p className="text-gray-300">We're capturing market share while competitors build MVPs</p>
+                        <h3 className="text-2xl font-bold text-white mb-4">Global Edge Network</h3>
+                        <p className="text-gray-400 leading-relaxed mb-4">
+                            Low-latency voice processing at the edge ensures natural conversations.
+                            Sub-200ms response times globally through intelligent routing.
+                        </p>
+                        <p className="text-sm text-gray-500">
+                            Content delivery optimized for real-time voice applications
+                        </p>
                     </motion.div>
                 </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="mt-8 p-6 border border-blue-500/30 bg-blue-900/10 rounded-xl max-w-3xl"
+                >
+                    <p className="text-lg text-gray-300">
+                        Our serverless architecture means you only pay for what you use,
+                        while maintaining enterprise-grade reliability and security.
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-slate-950",
@@ -323,42 +386,58 @@ const slides = [
         id: "social-proof",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <Shield className="w-20 h-20 text-blue-400 mb-6" />
+                <DollarSign className="w-20 h-20 text-green-400 mb-6" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                    Trusted by Industry Leaders
+                    The Economics
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Why this makes financial sense for every sales organization
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="p-8 border border-white/10 bg-white/5 rounded-2xl backdrop-blur-sm"
+                        initial={{ y: 30, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        className="p-6 border border-white/10 bg-white/5 rounded-xl"
                     >
-                        <p className="text-6xl mb-4">🏢</p>
-                        <p className="text-xl text-gray-300 italic mb-4">
-                            "DialerGPT increased our qualified pipeline by 340% in 90 days. It's not even close."
-                        </p>
-                        <p className="text-sm text-gray-500">— VP of Sales, Fortune 500 SaaS Company</p>
+                        <p className="text-4xl font-bold text-white mb-2">60%</p>
+                        <p className="text-sm uppercase tracking-widest text-gray-500 mb-2">Reduction</p>
+                        <p className="text-gray-400">in time to productivity</p>
                     </motion.div>
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 }}
-                        className="p-8 border border-white/10 bg-white/5 rounded-2xl backdrop-blur-sm"
+                        initial={{ y: 30, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="p-6 border border-white/10 bg-white/5 rounded-xl"
                     >
-                        <p className="text-6xl mb-4">🚀</p>
-                        <p className="text-xl text-gray-300 italic mb-4">
-                            "We went from 12-hour response times to 30 seconds. Our close rate doubled overnight."
-                        </p>
-                        <p className="text-sm text-gray-500">— CEO, High-Growth Fintech Startup</p>
+                        <p className="text-4xl font-bold text-white mb-2">$99-$299</p>
+                        <p className="text-sm uppercase tracking-widest text-gray-500 mb-2">Monthly</p>
+                        <p className="text-gray-400">vs. $3,000+ traditional training</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="p-6 border border-white/10 bg-white/5 rounded-xl"
+                    >
+                        <p className="text-4xl font-bold text-white mb-2">Unlimited</p>
+                        <p className="text-sm uppercase tracking-widest text-gray-500 mb-2">Practice</p>
+                        <p className="text-gray-400">24/7 availability, no limits</p>
                     </motion.div>
                 </div>
-                <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60">
-                    <div className="text-4xl">🏦</div>
-                    <div className="text-4xl">💼</div>
-                    <div className="text-4xl">🏥</div>
-                    <div className="text-4xl">🏭</div>
-                </div>
-                <p className="text-gray-500 mt-4 text-sm">Enterprise clients across Finance, SaaS, Healthcare, and Manufacturing</p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="p-8 border border-green-500/30 bg-green-900/10 rounded-xl max-w-3xl"
+                >
+                    <p className="text-2xl text-white font-semibold mb-3">
+                        Break even in your first month
+                    </p>
+                    <p className="text-gray-400 leading-relaxed">
+                        The cost of one lost deal from an undertrained rep exceeds our annual subscription.
+                        The ROI isn't debatable—it's mathematical.
+                    </p>
+                </motion.div>
             </div>
         ),
         bg: "bg-gray-950",
@@ -367,50 +446,57 @@ const slides = [
         id: "scale-challenge",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
+                <TrendingUp className="w-20 h-20 text-purple-400 mb-6" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-                    We're Scaling. <span className="text-red-400">Fast.</span>
+                    The Market Opportunity
                 </h2>
-                <p className="text-2xl md:text-3xl text-gray-300 mb-8">
-                    Demand is outpacing our current infrastructure capacity.
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Every company with a sales team is a potential customer
                 </p>
-                <div className="w-full max-w-2xl space-y-6">
-                    <div>
-                        <div className="flex justify-between mb-2">
-                            <span className="text-gray-400">Current Capacity</span>
-                            <span className="text-red-400 font-bold">98% Utilized</span>
-                        </div>
-                        <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
-                            <motion.div
-                                initial={{ width: "0%" }}
-                                whileInView={{ width: "98%" }}
-                                transition={{ duration: 2, ease: "easeOut" }}
-                                className="h-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <div className="flex justify-between mb-2">
-                            <span className="text-gray-400">Projected Demand (Q2)</span>
-                            <span className="text-purple-400 font-bold">450% Growth</span>
-                        </div>
-                        <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
-                            <motion.div
-                                initial={{ width: "0%" }}
-                                whileInView={{ width: "100%" }}
-                                transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-                                className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
-                            />
-                        </div>
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-8">
+                    <motion.div
+                        initial={{ x: -30, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        className="p-8 border border-white/10 bg-white/5 rounded-xl text-left"
+                    >
+                        <h3 className="text-2xl font-bold text-white mb-4">Total Addressable Market</h3>
+                        <p className="text-gray-400 leading-relaxed mb-4">
+                            15M+ sales professionals in North America alone.
+                            B2B companies spend $70B+ annually on sales training.
+                        </p>
+                        <p className="text-sm text-gray-500">
+                            We're targeting the SMB to mid-market segment first
+                        </p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ x: 30, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.15 }}
+                        className="p-8 border border-white/10 bg-white/5 rounded-xl text-left"
+                    >
+                        <h3 className="text-2xl font-bold text-white mb-4">Our Advantage</h3>
+                        <p className="text-gray-400 leading-relaxed mb-4">
+                            First-mover in AI-powered sales training with real voice simulation.
+                            Proven results with Purrify and growing pipeline.
+                        </p>
+                        <p className="text-sm text-gray-500">
+                            Network effects: more training data makes the product better
+                        </p>
+                    </motion.div>
                 </div>
-                <div className="mt-12 p-8 border border-yellow-500/30 bg-yellow-900/10 rounded-2xl backdrop-blur-sm">
-                    <p className="text-2xl font-bold text-white mb-3">
-                        We need enterprise-grade infrastructure. Now.
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="p-8 border border-purple-500/30 bg-purple-900/10 rounded-xl max-w-3xl"
+                >
+                    <p className="text-2xl text-white font-semibold mb-3">
+                        We're not just saving time—we're transforming how sales teams are built
                     </p>
-                    <p className="text-gray-400">
-                        To serve our pipeline of 200+ enterprise clients, we require massive compute resources, distributed processing, and global redundancy.
+                    <p className="text-gray-400 leading-relaxed">
+                        Every sales organization faces this problem. We're solving it at scale.
                     </p>
-                </div>
+                </motion.div>
             </div>
         ),
         bg: "bg-black",
@@ -419,49 +505,54 @@ const slides = [
         id: "roi",
         content: (
             <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <DollarSign className="w-20 h-20 text-green-400 mb-6" />
+                <Rocket className="w-20 h-20 text-blue-400 mb-6" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-                    The ROI is Undeniable
+                    What We're Building
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-8">
+                <p className="text-xl text-gray-400 mb-12 max-w-3xl">
+                    Our next phase requires strategic infrastructure partnerships
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-8">
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm"
+                        initial={{ y: 30, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        className="p-8 border border-white/10 bg-white/5 rounded-xl text-left"
                     >
-                        <p className="text-4xl font-black text-green-400 mb-2">92%</p>
-                        <p className="text-gray-300">Cost Reduction</p>
-                        <p className="text-sm text-gray-500 mt-2">vs. traditional SDR teams</p>
+                        <h3 className="text-2xl font-bold text-white mb-4">Enhanced Compute Capacity</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            Scaling to support 10,000+ concurrent voice training sessions.
+                            Requires elastic infrastructure with global distribution and
+                            advanced auto-scaling capabilities.
+                        </p>
                     </motion.div>
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
+                        initial={{ y: 30, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.15 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm"
+                        className="p-8 border border-white/10 bg-white/5 rounded-xl text-left"
                     >
-                        <p className="text-4xl font-black text-green-400 mb-2">24/7</p>
-                        <p className="text-gray-300">Always-On Coverage</p>
-                        <p className="text-sm text-gray-500 mt-2">Never miss a lead again</p>
-                    </motion.div>
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="p-6 border border-green-500/20 bg-green-900/10 rounded-2xl backdrop-blur-sm"
-                    >
-                        <p className="text-4xl font-black text-green-400 mb-2">3.2x</p>
-                        <p className="text-gray-300">Revenue Multiplier</p>
-                        <p className="text-sm text-gray-500 mt-2">Average customer result</p>
+                        <h3 className="text-2xl font-bold text-white mb-4">Strategic Partnerships</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            Seeking partnerships with enterprise cloud providers to accelerate
+                            our go-to-market strategy and leverage cutting-edge AI infrastructure.
+                        </p>
                     </motion.div>
                 </div>
-                <div className="p-8 border border-green-500/30 bg-green-900/20 rounded-2xl backdrop-blur-sm max-w-3xl">
-                    <p className="text-3xl font-bold text-white mb-4">
-                        Average Customer: $2.4M Additional Revenue in Year 1
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="p-8 border border-blue-500/30 bg-blue-900/10 rounded-xl max-w-4xl"
+                >
+                    <p className="text-2xl text-white font-semibold mb-4">
+                        Investment in infrastructure today means market dominance tomorrow
                     </p>
-                    <p className="text-gray-400">
-                        Our customers see payback in under 30 days. The question isn't whether to adopt AI sales—it's whether you can afford to wait.
+                    <p className="text-gray-400 leading-relaxed">
+                        We're looking for investors and partners who understand that the race to own
+                        AI-powered sales training will be won by those who can scale fastest.
+                        The technology works. Now we need the infrastructure to reach every sales team.
                     </p>
-                </div>
+                </motion.div>
             </div>
         ),
         bg: "bg-zinc-950",
@@ -469,34 +560,65 @@ const slides = [
     {
         id: "close",
         content: (
-            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
-                <motion.h2
+            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-6xl mx-auto">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
+                    className="mb-12"
                 >
-                    The Future Waits for No One
-                </motion.h2>
-                <p className="text-2xl md:text-3xl text-gray-300 mb-12 max-w-3xl">
-                    We're building the infrastructure to power the next generation of sales.
-                    <br />
-                    <span className="text-white font-bold mt-4 block">
-                        Join us.
-                    </span>
-                </p>
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-2xl font-bold rounded-full overflow-hidden shadow-2xl shadow-purple-500/50"
+                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                        Every day you wait,<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                            your competitors train faster
+                        </span>
+                    </h2>
+                    <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                        The companies that move first on AI-powered training will dominate their markets.
+                        The ones that wait will spend the next decade playing catch-up.
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mb-12 p-8 border border-white/10 bg-white/5 rounded-xl max-w-3xl"
                 >
-                    <span className="relative z-10 flex items-center gap-3">
-                        Let's Build This Together <ArrowRight className="w-6 h-6" />
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.button>
-                <p className="text-gray-500 mt-8 text-sm">
-                    DialerGPT • Redefining Sales at Scale
-                </p>
+                    <p className="text-xl text-white font-medium mb-3">
+                        DialerGPT
+                    </p>
+                    <p className="text-gray-400 leading-relaxed mb-6">
+                        Training sales teams at the speed of AI.<br />
+                        Proven with real customers. Ready to scale.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-lg font-semibold rounded-lg shadow-xl shadow-purple-500/30"
+                        >
+                            <span className="flex items-center gap-2 justify-center">
+                                Schedule a Demo <ArrowRight className="w-5 h-5" />
+                            </span>
+                        </motion.button>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-4 border border-white/20 text-white text-lg font-semibold rounded-lg hover:bg-white/5 transition-colors"
+                        >
+                            Discuss Partnership
+                        </motion.button>
+                    </div>
+                </motion.div>
+
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-gray-500 text-sm"
+                >
+                    contact@dialergpt.com • Transforming sales training, one conversation at a time
+                </motion.p>
             </div>
         ),
         bg: "bg-black",
