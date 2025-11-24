@@ -650,15 +650,18 @@ export default function PitchDeck() {
     };
 
     return (
-        <div className="fixed inset-0 z-[100] overflow-hidden font-sans text-white">
+        <div className="fixed inset-0 z-[100] overflow-hidden font-sans text-white bg-black">
             {/* Background Transition */}
-            <motion.div
-                key={slides[currentSlide].bg}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className={`absolute inset-0 ${slides[currentSlide].bg}`}
-            />
+            <AnimatePresence mode="popLayout">
+                <motion.div
+                    key={slides[currentSlide].bg}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    className={`absolute inset-0 ${slides[currentSlide].bg}`}
+                />
+            </AnimatePresence>
 
             {/* Slide Content */}
             <AnimatePresence mode="wait">
