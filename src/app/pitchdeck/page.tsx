@@ -617,7 +617,7 @@ const slides = [
                     transition={{ delay: 0.6 }}
                     className="text-gray-500 text-sm"
                 >
-                    contact@dialergpt.com • Transforming sales training, one conversation at a time
+                    hello@purrify.ca • Transforming sales training, one conversation at a time
                 </motion.p>
             </div>
         ),
