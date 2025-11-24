@@ -592,22 +592,26 @@ const slides = [
                         Proven with real customers. Ready to scale.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <motion.button
+                        <motion.a
+                            href="https://cal.com/purrify/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-lg font-semibold rounded-lg shadow-xl shadow-purple-500/30"
+                            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-lg font-semibold rounded-lg shadow-xl shadow-purple-500/30 cursor-pointer flex items-center justify-center"
                         >
                             <span className="flex items-center gap-2 justify-center">
                                 Schedule a Demo <ArrowRight className="w-5 h-5" />
                             </span>
-                        </motion.button>
-                        <motion.button
+                        </motion.a>
+                        <motion.a
+                            href="mailto:partnership@purrify.ca"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 border border-white/20 text-white text-lg font-semibold rounded-lg hover:bg-white/5 transition-colors"
+                            className="px-8 py-4 border border-white/20 text-white text-lg font-semibold rounded-lg hover:bg-white/5 transition-colors cursor-pointer flex items-center justify-center"
                         >
                             Discuss Partnership
-                        </motion.button>
+                        </motion.a>
                     </div>
                 </motion.div>
 
@@ -617,7 +621,7 @@ const slides = [
                     transition={{ delay: 0.6 }}
                     className="text-gray-500 text-sm"
                 >
-                    hello@purrify.ca • Transforming sales training, one conversation at a time
+                    tony@purrify.ca • Transforming sales training, one conversation at a time
                 </motion.p>
             </div>
         ),
