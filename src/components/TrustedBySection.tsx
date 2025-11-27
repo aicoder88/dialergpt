@@ -9,24 +9,9 @@ const TrustedBySection = () => {
                     Trusted by innovative sales teams at
                 </p>
                 <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    {/* Purrify Logo - Using text representation as requested/implied if asset missing, 
-              but styling it to look like a logo */}
+                    {/* Purrify Logo */}
                     <div className="flex items-center gap-2 group cursor-pointer">
                         <span className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Purrify</span>
-                    </div>
-
-                    {/* Other Trust Logos (Text/Icon placeholders) */}
-                    <div className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-white/80">TechFlow</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-white/80">SalesForce</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-white/80">HubSpot</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-white/80">Intercom</span>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Vote } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import QuizModal from "@/components/QuizModal";
 
 export function Navbar() {
@@ -38,7 +37,6 @@ export function Navbar() {
                         Help Us Build
                     </Button>
                     <div className="hidden md:flex items-center gap-2">
-                        <LanguageSwitcher />
                         <ThemeSwitcher />
                     </div>
                     <Link href="/login">

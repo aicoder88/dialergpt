@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, CheckCircle, Play, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
 import { Card } from "./ui/card";
+import FeedbackModal from "./FeedbackModal";
 
 const HeroSection = () => {
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   return (
     <section className="relative w-full py-20 md:py-32 overflow-hidden">
       {/* Background Image */}
@@ -24,7 +28,7 @@ const HeroSection = () => {
           <div className="space-y-8 z-10">
             <div className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-6 py-2 text-sm font-medium text-purple-300 backdrop-blur-sm animate-float">
               <Sparkles className="mr-2 h-4 w-4 text-purple-400" />
-              Trusted by Purrify & 50+ SMBs
+              Trusted by Purrify
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight">
@@ -40,13 +44,18 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="font-medium text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/25 text-white border-0 px-8 py-6 text-lg transition-all hover:scale-105">
+              <Button
+                size="lg"
+                onClick={() => setIsFeedbackOpen(true)}
+                className="font-medium text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/25 text-white border-0 px-8 py-6 text-lg transition-all hover:scale-105"
+              >
                 Start Training Free <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
               <Button
                 variant="outline"
                 size="lg"
+                onClick={() => setIsFeedbackOpen(true)}
                 className="font-medium text-base border-purple-500/30 hover:bg-purple-500/10 text-foreground px-8 py-6 text-lg backdrop-blur-sm"
               >
                 <Play className="mr-2 h-5 w-5" />
@@ -140,6 +149,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
     </section>
   );
 };

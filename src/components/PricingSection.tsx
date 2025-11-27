@@ -152,11 +152,8 @@ const PricingSection = () => {
         <div className="mt-16 text-center">
           <p className="text-muted-foreground mb-4">Trusted by innovative sales teams at</p>
           <div className="flex flex-wrap justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* Placeholder logos - in a real app these would be SVGs */}
+            {/* Purrify */}
             <span className="text-xl font-bold">Purrify</span>
-            <span className="text-xl font-bold">TechFlow</span>
-            <span className="text-xl font-bold">SalesForce</span>
-            <span className="text-xl font-bold">HubSpot</span>
           </div>
         </div>
       </div>
