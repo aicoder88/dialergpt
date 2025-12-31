@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Card } from "./ui/card";
-import { Activity, BarChart3, Brain, LineChart, MousePointer2, PieChart, Zap } from "lucide-react";
+import { Activity, Brain, LineChart, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 

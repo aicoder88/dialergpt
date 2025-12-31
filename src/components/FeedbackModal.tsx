@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { X, Sparkles, CheckCircle, Lightbulb } from "lucide-react";
+import { X, CheckCircle, Lightbulb } from "lucide-react";
 
 interface FeedbackModalProps {
   isOpen: boolean;

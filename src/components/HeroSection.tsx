@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, CheckCircle, Play, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
-import { Card } from "./ui/card";
 import FeedbackModal from "./FeedbackModal";
 
 const HeroSection = () => {

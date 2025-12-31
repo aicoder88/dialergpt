@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Slack, Twitter } from "lucide-react";
+import { MessageCircle, Twitter } from "lucide-react";
 
 export default function CommunityPage() {
     return (
