@@ -13,7 +13,6 @@ DialerGPT is a Next.js 14 marketing landing page for an AI-powered lead qualific
 - **Styling**: Tailwind CSS with custom design tokens
 - **UI Components**: shadcn/ui (Radix UI primitives)
 - **Theme**: next-themes for dark/light mode
-- **DevTools**: Tempo DevTools (configured in tempo.config.json)
 
 ## Common Commands
 

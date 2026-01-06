@@ -57,7 +57,6 @@ Built with Next.js 14, TypeScript, and shadcn/ui components, DialerGPT delivers 
 - **clsx**: Utility for constructing className strings
 - **Supabase**: Backend as a Service (optional integration)
 - **Stripe**: Payment processing (optional integration)
-- **Tempo DevTools**: Development tooling
 
 ## Getting Started
 
@@ -176,7 +175,6 @@ dial/
 │   │   ├── PricingSection.tsx        # Pricing tiers
 │   │   ├── QuizModal.tsx             # Interactive quiz modal
 │   │   ├── ROISection.tsx            # ROI calculator/information
-│   │   ├── tempo-init.tsx            # Tempo DevTools initialization
 │   │   ├── theme-provider.tsx        # Theme context provider
 │   │   ├── theme-switcher.tsx        # Dark/light mode toggle
 │   │   └── TrustedBySection.tsx      # Social proof section
